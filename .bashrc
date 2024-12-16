@@ -85,21 +85,10 @@ if [ -x /usr/bin/dircolors ]; then
     alias egrep='egrep --color=auto'
 fi
 
-# colored GCC warnings and errors
-#export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
-
-# Add an "alert" alias for long running commands.  Use like so:
-#   sleep 10; alert
-#alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
-
-# Aliases
-if [ -f ~/.bash/aliases.sh ]; then
-    . ~/.bash/aliases.sh
-fi
-# Functions
-if [ -f ~/.bash/funcs.sh ]; then
-    . ~/.bash/funcs.sh
-fi
+# Maybe loop to source these files?
+if [ -f ~/.bash/aliases.sh ]; then . ~/.bash/aliases.sh; fi
+if [ -f ~/.bash/funcs.sh ]; then . ~/.bash/funcs.sh; fi
+if [ -f ~/.bash/profile.sh ]; then . ~/.bash/profile.sh; fi
 
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
