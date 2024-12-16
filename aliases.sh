@@ -20,6 +20,7 @@ alias FUCK='sudo shutdown now'
 alias snapi='sudo snap install "$1"'
 alias apti='sudo apt install "$1"'
 # Random
+alias snano='sudo nano'
 alias tarr='tar -xvf "$1"'
 alias rmd='rm -rf "$1"'
 alias cd.='cd ..'
