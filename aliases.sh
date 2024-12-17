@@ -31,6 +31,7 @@ alias la='ls -A'
 alias l='ls -CFA'
 
 # git
+alias gstat='git status'
 alias gush='git push'
 
 # MySQL/SQL
