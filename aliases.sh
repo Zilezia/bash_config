@@ -5,7 +5,9 @@ alias reload='. ~/.bashrc'
 alias barc='nano ~/.bashrc'
 alias balias='nano ~/.bash/aliases.sh'
 alias bafunc='nano ~/.bash/funcs.sh'
+alias bafun='nano ~/.bash/funcs.sh'
 alias bapf='nano ~/.bash/profile.sh'
+alias bafile='nano ~/.bash/profile.sh'
 
 # update upgrade
 alias up='sudo apt update && sudo apt upgrade'
@@ -16,21 +18,30 @@ alias upg='sudo apt upgrade'
 alias fuck='sudo reboot now'
 alias FUCK='sudo shutdown now'
 
-# installers
+# Package Managers
+## Snap
 alias snapi='sudo snap install "$1"'
+## Apt
 alias apti='sudo apt install "$1"'
+alias aptarm='sudo apt autoremove "$1"'
+alias aptrm='sudo apt remove "$1"'
+alias aptu='sudo apt update'
+
 # Random
 alias snano='sudo nano'
 alias tarr='tar -xvf "$1"'
 alias rmd='rm -rf "$1"'
-alias cd.='cd ..'
-alias cd..='cd .. && cd ..'
 alias cls='clear' # lol
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CFA'
 
+# have a function for this
+alias cd.='cd ..'
+alias cd..='cd .. && cd ..'
+
 # git
+alias gus='git status'
 alias gstat='git status'
 alias gush='git push'
 
@@ -49,3 +60,5 @@ alias carR='cargo r -r'
 alias trunb='trunk build'
 alias trunB='trunk build --release'
 alias trunc='trunk clean'
+alias truns='trunk serve'
+alias trunS='trunk serve --release'
