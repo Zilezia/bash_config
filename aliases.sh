@@ -27,7 +27,14 @@ alias aptarm='sudo apt autoremove "$1"'
 alias aptrm='sudo apt remove "$1"'
 alias aptu='sudo apt update'
 
+# Cools
+alias cool='fastfetch'
+alias cool2='jp2a --height=25 -b --red=2.5 ~/Pictures/Lain/lain_side.png'
+
 # Random
+alias terminal='gnome-terminal'
+alias files='xdg-open .'
+alias ok='echo ok'
 alias snano='sudo nano'
 alias tarr='tar -xvf "$1"'
 alias rmd='rm -rf "$1"'
@@ -35,6 +42,7 @@ alias cls='clear' # lol
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CFA'
+alias l.='l ..'
 
 # have a function for this
 alias cd.='cd ..'
