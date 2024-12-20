@@ -46,6 +46,7 @@ alias l='ls -CFA'
 alias l.='l ..'
 
 # have a function for this
+alias cd,='cd ..'
 alias cd.='cd ..'
 alias cd..='cd .. && cd ..'
 

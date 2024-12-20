@@ -1,4 +1,3 @@
-
 # bash
 export bash=~/.bash
 export bafunc=$bash/functions
@@ -10,6 +9,7 @@ export lain=$Lain
 export Kode=~/Kode
 ## Projects
 export zilezia_dev=$Kode/zilezia.dev
+export zilezia=$zilezia_dev
 export site=$zilezia_dev
 
 export pet_crem=$Kode/pet_crem
