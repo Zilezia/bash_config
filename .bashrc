@@ -4,9 +4,9 @@
 # for examples
 
 # Configure everything with bash
+if [ -f ~/.bash/profile.sh ]; then . ~/.bash/profile.sh; fi # this should load first cuz some aliases and functions recquire variables
 if [ -f ~/.bash/aliases.sh ]; then . ~/.bash/aliases.sh; fi
 if [ -f ~/.bash/funcs.sh ]; then . ~/.bash/funcs.sh; fi
-if [ -f ~/.bash/profile.sh ]; then . ~/.bash/profile.sh; fi
 
 # Some default stuff vvv
 

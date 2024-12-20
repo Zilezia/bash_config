@@ -33,6 +33,7 @@ alias cool2='jp2a --height=25 -b --red=2.5 ~/Pictures/Lain/lain_side.png'
 
 # Random
 alias terminal='gnome-terminal'
+alias new='terminal'
 alias files='xdg-open .'
 alias ok='echo ok'
 alias snano='sudo nano'
