@@ -4,6 +4,7 @@ alias reload='. ~/.bashrc'
 # quick aliases to the bash files
 alias barc='nano ~/.bashrc'
 alias balias='nano ~/.bash/aliases.sh'
+alias bls='balias'
 alias bafunc='nano ~/.bash/funcs.sh'
 alias bafun='nano ~/.bash/funcs.sh'
 alias bapf='nano ~/.bash/profile.sh'
@@ -20,35 +21,36 @@ alias FUCK='sudo shutdown now'
 
 # Package Managers
 ## Snap
-alias snapi='sudo snap install "$1"'
+alias snapi='sudo snap install'
 ## Apt
-alias apti='sudo apt install "$1"'
-alias aptarm='sudo apt autoremove "$1"'
-alias aptrm='sudo apt remove "$1"'
+alias apti='sudo apt install'
+alias aptarm='sudo apt autoremove'
+alias aptrm='sudo apt remove'
 alias aptu='sudo apt update'
 
 # Cools
 alias cool='fastfetch'
-alias cool2='jp2a --height=25 -b --red=2.5 ~/Pictures/Lain/lain_side.png'
+alias lain='jp2a --height=25 -b --red=2.5 ~/Pictures/Lain/lain_side.png'
+alias cool2='lain'
 
 # Random
+alias x='exit'
 alias terminal='gnome-terminal'
 alias new='terminal'
-alias files='xdg-open .'
 alias ok='echo ok'
 alias snano='sudo nano'
-alias tarr='tar -xvf "$1"'
-alias rmd='rm -rf "$1"'
-alias cls='clear' # lol
-alias ll='ls -alF'
-alias la='ls -A'
-alias l='ls -CFA'
-alias l.='l ..'
+alias tarr='tar -xvf'
+alias rmd='rm -rf'
+alias cl='clear'
+alias cls='cl'
+alias l='ls -ACF'
 
-# have a function for this
+# change to functions
+alias l.='l ..'
 alias cd,='cd ..'
 alias cd.='cd ..'
 alias cd..='cd .. && cd ..'
+alias files='xdg-open .'
 
 # git
 alias gus='git status'
