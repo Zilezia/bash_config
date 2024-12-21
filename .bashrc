@@ -4,6 +4,7 @@
 # for examples
 
 # Configure everything with bash
+if [ -f ~/.bash/env.sh ]; then . ~/.bash/env.sh; fi # this should load firstest bc its just more special environmental variables which should be private (no git repo)
 if [ -f ~/.bash/profile.sh ]; then . ~/.bash/profile.sh; fi # this should load first cuz some aliases and functions recquire variables
 if [ -f ~/.bash/aliases.sh ]; then . ~/.bash/aliases.sh; fi
 if [ -f ~/.bash/funcs.sh ]; then . ~/.bash/funcs.sh; fi

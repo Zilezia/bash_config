@@ -3,17 +3,22 @@
 alias reload='. ~/.bashrc'
 # quick aliases to the bash files
 alias barc='nano ~/.bashrc'
-alias balias='nano ~/.bash/aliases.sh'
-alias bls='balias'
-alias bafunc='nano ~/.bash/funcs.sh'
+
+alias benv='nano ~/.bash/env.sh'
+
+alias bls='nano ~/.bash/aliases.sh'
+alias balias='balias'
+
 alias bafun='nano ~/.bash/funcs.sh'
+alias bafunc='bafun'
+
 alias bapf='nano ~/.bash/profile.sh'
-alias bafile='nano ~/.bash/profile.sh'
+alias bafile='bapf'
 
 # update upgrade
-alias up='sudo apt update && sudo apt upgrade'
 alias upd='sudo apt update'
 alias upg='sudo apt upgrade'
+alias up='upd && upg'
 
 # interesting
 alias fuck='sudo reboot now'
@@ -34,6 +39,8 @@ alias lain='jp2a --height=25 -b --red=2.5 ~/Pictures/Lain/lain_side.png'
 alias cool2='lain'
 
 # Random
+alias c='xclip -selection clipboard'
+alias v='xclip -o'
 alias x='exit'
 alias terminal='gnome-terminal'
 alias new='terminal'
@@ -47,14 +54,14 @@ alias l='ls -ACF'
 
 # change to functions
 alias l.='l ..'
-alias cd,='cd ..'
 alias cd.='cd ..'
-alias cd..='cd .. && cd ..'
+alias cd..='cd. && cd.'
+alias cd,='cd.'
 alias files='xdg-open .'
 
 # git
 alias gus='git status'
-alias gstat='git status'
+alias gstat='gus'
 alias gush='git push'
 
 # MySQL/SQL
