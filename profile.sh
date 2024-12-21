@@ -1,6 +1,7 @@
 # bash
 export bash=~/.bash
-export bafunc=$bash/functions
+export bafun=$bash/functions
+export bafunc=$bafun
 
 export Lain=~/Pictures/Lain
 export lain=$Lain
@@ -8,6 +9,7 @@ export lain=$Lain
 # Projects dir
 export Kode=~/Kode
 ## Projects
+
 export zilezia_dev=$Kode/zilezia.dev
 export zilezia=$zilezia_dev
 export site=$zilezia_dev

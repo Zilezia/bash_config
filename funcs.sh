@@ -1,4 +1,4 @@
 # Bash functions
-for file in ~/.bash/functions/*; do
+for file in $bafun/*; do
     if [ -f "$file" ]; then . "$file"; fi
 done

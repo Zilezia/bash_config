@@ -1,13 +1,14 @@
 # ~/.bash/aliases.sh with all the aliases
 
 alias reload='. ~/.bashrc'
+alias reloadx='clear && . ~/.bashrc'
 # quick aliases to the bash files
 alias barc='nano ~/.bashrc'
 
 alias benv='nano ~/.bash/env.sh'
 
 alias bls='nano ~/.bash/aliases.sh'
-alias balias='balias'
+alias balias='bls'
 
 alias bafun='nano ~/.bash/funcs.sh'
 alias bafunc='bafun'
