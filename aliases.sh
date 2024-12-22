@@ -1,10 +1,9 @@
 # ~/.bash/aliases.sh with all the aliases
 
-alias reload='. ~/.bashrc'
-alias reloadx='clear && . ~/.bashrc'
+alias rld='. ~/.bashrc && clear'
+alias reload='rld'
 # quick aliases to the bash files
 alias barc='nano ~/.bashrc'
-
 alias benv='nano ~/.bash/env.sh'
 
 alias bls='nano ~/.bash/aliases.sh'
@@ -40,6 +39,7 @@ alias lain='jp2a --height=25 -b --red=2.5 ~/Pictures/Lain/lain_side.png'
 alias cool2='lain'
 
 # Random
+alias rpi="ssh zilezia@$rpi"
 alias c='xclip -selection clipboard'
 alias v='xclip -o'
 alias x='exit'
@@ -69,6 +69,7 @@ alias gush='git push'
 alias rsql='mysql -u root -p' # no sudo to avoid double password typing
 
 # Rust
+## Cargo
 alias carc='cargo c'
 alias carC='cargo clean'
 alias carb='cargo b'

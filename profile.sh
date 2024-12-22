@@ -6,6 +6,8 @@ export bafunc=$bafun
 export Lain=~/Pictures/Lain
 export lain=$Lain
 
+export rpi=192.168.1.190
+
 # Projects dir
 export Kode=~/Kode
 ## Projects
