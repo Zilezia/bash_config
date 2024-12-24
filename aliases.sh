@@ -5,13 +5,10 @@ alias reload='rld'
 # quick aliases to the bash files
 alias barc='nano ~/.bashrc'
 alias benv='nano ~/.bash/env.sh'
-
 alias bls='nano ~/.bash/aliases.sh'
 alias balias='bls'
-
 alias bafun='nano ~/.bash/funcs.sh'
 alias bafunc='bafun'
-
 alias bapf='nano ~/.bash/profile.sh'
 alias bafile='bapf'
 
