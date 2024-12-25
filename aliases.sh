@@ -22,6 +22,8 @@ alias fuck='sudo reboot now'
 alias FUCK='sudo shutdown now'
 
 # Package Managers
+## DPKG
+alias debi='sudo dpkg -i'
 ## Snap
 alias snapi='sudo snap install'
 ## Apt
