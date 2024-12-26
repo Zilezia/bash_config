@@ -60,7 +60,11 @@ alias cd,='cd.'
 alias files='xdg-open .'
 
 # git
+alias gadd='git add .'
+alias gyatt='gadd'
+alias gyat='gadd'
 alias gus='git status'
+alias gom='git commit -m'
 alias gstat='gus'
 alias gush='git push'
 
