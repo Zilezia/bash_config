@@ -2,6 +2,7 @@
 
 alias rld='. ~/.bashrc && clear'
 alias reload='rld'
+alias rldx='. ~/.bashrc'
 # quick aliases to the bash files
 alias barc='nano ~/.bashrc'
 alias benv='nano ~/.bash/env.sh'
@@ -38,6 +39,7 @@ alias lain='jp2a --height=25 -b --red=2.5 ~/Pictures/Lain/lain_side.png'
 alias cool2='lain'
 
 # Random
+alias rever="echo 'typo lol' && rerver"
 alias rpi="ssh zilezia@$rpi"
 alias c='xclip -selection clipboard'
 alias v='xclip -o'

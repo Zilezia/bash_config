@@ -12,11 +12,12 @@ export rpi=192.168.1.190
 export Kode=~/Kode
 ## Projects
 
-export zilezia_dev=$Kode/zilezia.dev
-export zilezia=$zilezia_dev
-export site=$zilezia_dev
+export zilezia=$Kode/zilezia.dev
+export zilezia_dev=$zilezia
+export site=$zilezia
 
 export pet_crem=$Kode/pet_crem
+export PET_CREM_ENV=$pet_crem/.env
 
 export RoPC=$Kode/RoPC_plugin
 export ropc=$RoPC

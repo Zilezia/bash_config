@@ -1,15 +1,15 @@
-zilezia() {
+rerver() {
     # These helps are pretty pointless I'm literally making this function
     # solely for myself, I'm not intending to showing this to anyone
     # I'm literally talking to myself rn :skull:
     help() {
-        echo 'zilezia <command> [option]'
+        echo 'rerver <server> <command>'
         echo 'Options:'
-        echo '  -s      --start     "Get the server up and running"'
-        echo '  -S      --stop      "Stop the server completely"'
+        echo '  -a      --activate  "Get the server up and running"'
+        echo '  -s      --stop      "Stop the server completely"'
+        echo '  -S      --serve     "Serve the server (only for build)"'
         echo '  -r      --restart   "Restart the server"'
         echo '  -l      --log       "Show most recent logs"'
-        echo '  -p      --ping      "Ping the server to check if its up"'
         echo '  -e      --edit      "Edit the function (using nano)"'
         echo '  -H                  "View --log help message"'
         echo '  -h      --help      "View this help message"                [DEFAULT]'
@@ -17,7 +17,7 @@ zilezia() {
     }
 
     log_help() {
-        echo 'zilezia -l [option]'
+        echo 'rerver <server> -l [option]'
         echo 'Options:'
         echo '  -c      --cat       "Cat the log file"'
         echo '  -t      --tail      "Show 10 lines from the bottom"     [DEFAULT]'
@@ -25,55 +25,73 @@ zilezia() {
         return
     }
 
-    local server=$zilezia/server
-
-    start_server() {
-        nohup cargo r --release --manifest-path $zilezia/Cargo.toml > $server/server.log 2>&1 &
-        echo $! > $server/server.pid
-        echo "Server Started"
+    cleanup() {
+        pkill -P $$
+        echo 'end of serve'
     }
 
-    stop_server() {
-        echo "Stopping server"
-        kill -9 $(cat $server/server.pid)
+    local cargo
+    local server
+    local front
+
+    activate_server() {
+        if [ -f "$path" ]; then
+            if [ ! -d "$server"]; then mkdir $server; fi
+            nohup cargo r --release --manifest-path $cargo > $server/server.log 2>&1 &
+            echo $! > $server/server.pid
+            echo 'Server is up!'
+            return
+        fi
     }
 
-    restart_server() {
-        echo "Restarting server"
-        stop_server
-        start_server
+    serve_server() {
+        trap cleanup SIGINT SIGTERM
+        echo 'serving'
+        cargo r --manifest-path $cargo &
+        trunk serve --config $front &
+        wait
     }
 
     read_logs() {
-        local log=$server/server.log
-        case "$1" in
-            -c | --cat)
-                cat $log;;
-            -h | --help)
+        echo "$server"
+        cat $cargo
+    }
+
+    server_com() {
+        cargo=$Kode/$1/Cargo.toml
+        server=$Kode/$1/server
+        front=$Kode/$1/front
+
+        case $2 in
+            -a | --activate)
+                activate_server $1;;
+            -s | --stop)
+                stop_server $1;;
+            -S | --serve)
+                serve_server $1;;
+            -r | --restart)
+                restart_server $1;;
+            -l | --log)
+                read_logs $1 $2;;
+            -H)
                 log_help;;
-            -t | --tail | *)
-                tail -n10 $log;;
+            -h | --help | *)
+                help;;
         esac
     }
 
     case $1 in
-        -s | --start)
-            start_server;;
-        -S | --stop)
-            stop_server;;
-        -r | --restart)
-            restart_server;;
-        -l | --log)
-            read_logs $2;;
         -e | --edit)
-            nano $bafun/zilezia.sh;;
-        -p | --ping)
-            ping zilezia.dev;;
+            nano $bafun/rerver.sh;;
+        -h | --help)
+            help;;
         -H)
             log_help;;
-        -h | --help | *)
-            help;;
+        *)
+            if [ ${#1} -lt 5 ]; then help; fi
+            server_com $1 $2
+            ;;
     esac
 }
 
-if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then zilezia "$@"; fi
+if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then rerver "$@"; fi
