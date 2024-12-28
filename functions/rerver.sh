@@ -1,49 +1,67 @@
 # Just quicker setting up sites that are rust based
+_rerver() {
+    local cur prev commands server_opts
+    COMPREPLY=()
+    cur="${COMP_WORDS[COMP_CWORD]}"
+    prev="${COMP_WORDS[COMP_CWORD-1]}"
+    commands="--edit --help"
+    commands_short="-e -h"
+    server_opts="--activate --stop --serve --restart --log --help"
+    server_opts_short="-a -s -S -r -l -h"
+
+    if [[ ${COMP_CWORD} -eq 1 ]]; then
+        COMPREPLY=( $(compgen -W "${commands}" -- ${cur}) )
+        COMPREPLY+=( $(compgen -W "${commands_short}" -- ${cur}) )
+    elif [[ ${COMP_CWORD} -eq 2 && ! ${prev} =~ ^- ]]; then
+        COMPREPLY=( $(compgen -W "${server_opts}" -- ${cur}) )
+        COMPREPLY+=( $(compgen -W "${server_opts_short}" -- ${cur}) )
+    fi
+    return
+}
 
 rerver() {
     # These helps are pretty pointless I'm literally making this function
     # solely for myself, I'm not intending to showing this to anyone
     # I'm literally talking to myself rn :skull:
-    local underline=`tput smul`
-    local nounderline=`tput rmul`
-    local bold=`tput bold`
-    local normal=`tput sgr0`
     help() {
         echo 'rerver <command> <option>'
         echo
         echo 'Commands:'
-        echo "  [server]            \"Directory name of the server\"          ${bold}[DEFAULT]"
-        echo '  -e      --edit      "Edit the function (using nano)"'
-        echo '  -h      --help      "View this help message"'
-        echo '  -H                  "View --log help message"\n'
+     echo -e '              [server]    "Directory name of the server"          \e[1m[DEFAULT]\e[0m'
+        echo '      -e      --edit      "Edit the function (using nano)"'
+        echo '      -h      --help      "View this help message"'
+        echo '      -H                  "View --log help message"'
+        echo
         echo 'Options:'
-        echo '  -a      --activate  "Get the server up and running"'
-        echo '  -s      --stop      "Stop the server completely"'
-        echo '  -S      --serve     "Serve the server (only for build)"'
-        echo '  -r      --restart   "Restart the server"'
-        echo '  -l      --log       "Show most recent logs"'
-        echo '  -H                  "View --log help message"'
-        echo '  -h      --help      "View this help message"                [DEFAULT]'
+        echo '      -a      --activate  "Get the server up and running"'
+        echo '      -s      --stop      "Stop the server completely"'
+        echo '      -S      --serve     "Serve the server (only for build)"'
+        echo '      -r      --restart   "Restart the server"'
+        echo '      -l      --log       "Show most recent logs"'
+        echo '      -H                  "View --log help message"'
+     echo -e '      -h      --help      "View this help message"                \e[1m[DEFAULT]\e[0m'
         return
     }
 
     log_help() {
         echo 'rerver [server] -l <option>'
         echo 'Options:'
-        echo '  -c      --cat       "Cat the log file"'
-        echo '  -t      --tail      "Show 10 lines from the bottom"         [DEFAULT]'
-        echo '  -h      --help      "View this help message"'
+        echo '      -c      --cat       "Cat the log file"'
+     echo -e '      -t      --tail      "Show 10 lines from the bottom"         \e[1m[DEFAULT]\e[0m'
+        echo '      -h      --help      "View this help message"'
         return
     }
 
-    cleanup() {
-        pkill -P $$
-        echo 'Processes killed.'
-    }
+    local pids cargo server front
 
-    local cargo
-    local server
-    local front
+    cleanup() {
+        for pid in "${pids[@]}"; do
+            kill -9 "${pid}"
+        done
+        echo
+        echo "Cleaned everything up"
+        return
+    }
 
     activate_server() {
         if [ -f "$cargo" ]; then
@@ -71,9 +89,11 @@ rerver() {
         trap cleanup SIGINT SIGTERM
 
         echo 'Serving...'
-        cargo r --manifest-path $cargo &
-        trunk serve --config $front &
+        cargo r --manifest-path $cargo & pids+=( "$!" )
+        trunk serve --config $front & pids+=( "$!" )
         wait
+
+        trap - SIGINT SIGTERM
     }
 
     read_logs() {
@@ -132,3 +152,4 @@ rerver() {
 }
 
 if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then rerver "$@"; fi
+complete -F _rerver rerver

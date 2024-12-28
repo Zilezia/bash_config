@@ -1,4 +1,4 @@
 
+*.swp
 .bash_history
-
 env.sh

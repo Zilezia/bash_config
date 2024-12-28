@@ -37,6 +37,7 @@ alias aptu='sudo apt update'
 alias cool='fastfetch'
 alias lain='jp2a --height=25 -b --red=2.5 ~/Pictures/Lain/lain_side.png'
 alias cool2='lain'
+alias cool3='for i in {232..255} {255..232} ; do echo -en "\e[38;5;${i}m$\e[0m" ; done ; echo'
 
 # Random
 alias rever="echo 'typo lol' && rerver"
