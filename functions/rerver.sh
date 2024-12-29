@@ -65,7 +65,6 @@ rerver() {
 
     activate_server() {
         if [ -f "$cargo" ]; then
-            if [ ! -d "$server"]; then mkdir $server; fi
             echo 'Activating server...'
             nohup cargo r --release --manifest-path $cargo > $server/server.log 2>&1 &
             echo $! > $server/server.pid
@@ -77,6 +76,7 @@ rerver() {
     stop_server() {
         echo 'Stopping server...'
         kill -9 $(cat $server/server.pid)
+        echo 'Server stopped.'
     }
 
     restart_server() {
