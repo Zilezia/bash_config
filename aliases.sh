@@ -25,6 +25,7 @@ alias FUCK='sudo shutdown now'
 # Package Managers
 ## DPKG
 alias debi='sudo dpkg -i'
+alias debil='debi'
 ## Snap
 alias snapi='sudo snap install'
 ## Apt
@@ -70,6 +71,9 @@ alias gus='git status'
 alias gom='git commit -m'
 alias gstat='gus'
 alias gush='git push'
+alias gushu='gush -u origin main'
+alias granch='git branch -v'
+alias gemote='git remote -v'
 
 # MySQL/SQL
 alias rsql='mysql -u root -p' # no sudo to avoid double password typing
