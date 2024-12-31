@@ -162,3 +162,4 @@ rerver() {
 
 if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then rerver "$@"; fi
 complete -F _rerver rerver
+
