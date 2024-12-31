@@ -74,14 +74,23 @@ rerver() {
     }
 
     stop_server() {
-        echo 'Stopping server...'
-        kill -9 $(cat $server/server.pid)
-        echo 'Server stopped.'
+        stop_func() {
+            echo 'Stopping server...'
+            kill -9 $(cat $server/server.pid)
+            echo 'Server stopped.'
+        }
+
+        if [ "$1" == 'r' ]; then
+            stop_func
+        else
+            stop_func
+            return
+        fi
     }
 
     restart_server() {
         echo 'Restarting server...'
-        stop_server
+        stop_server 'r'
         activate_server
     }
 
