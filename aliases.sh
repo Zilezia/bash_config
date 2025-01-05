@@ -1,7 +1,7 @@
 # ~/.bash/aliases.sh with all the aliases
 
 alias rldx='. ~/.bashrc'
-alias rld='rld && clear'
+alias rld='rldx && clear'
 # quick aliases to the bash files
 alias barc='nano ~/.bashrc'
 alias benv='nano ~/.bash/env.sh'
