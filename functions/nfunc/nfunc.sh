@@ -3,11 +3,17 @@
 # 'Auto' create bash functions faster instead of writing them out yourself (like this)
 
 nfunc() {
-    if [ "$1" = "-h" ] || [ "$1" = "--help" ]; then
+    help() {
         echo "nfunc - Create new bash function"
-        echo "Options:"
+        echo -e "\nOptions:"
         return
-    fi
+    }
+    case $1 in
+        -e | --edit)
+            nano ${BASH_SOURCE[0]};;
+        -h | --help | *)
+            help;;
+    esac
 
     # check maybe if the function already exists?
 
@@ -16,7 +22,7 @@ nfunc() {
     local file_path="$bash/functions/$file_name"
 
     local func_desc="n/a"
-
+    # this is inceptiony whats happening here
 cat > "$file_path" << EOF
 $func_name() {
     help() {
@@ -38,4 +44,4 @@ EOF
     return
 }
 
-if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then nfunc "$@"; fi
+if [[ ${BASH_SOURCE[0]} == ${0} ]]; then nfunc "$@"; fi

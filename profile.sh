@@ -10,8 +10,11 @@ export rpi=192.168.1.190
 
 # Projects dir
 export Kode=~/Kode
-## Projects
+if [[ ! -d $Kode ]]; then
+    export Kode=~/Documents
+fi
 
+## Projects
 export zilezia=$Kode/zilezia.dev
 export zilezia_dev=$zilezia
 export site=$zilezia

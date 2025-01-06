@@ -1,6 +1,4 @@
 # Bash functions
-for file in $bafun/*; do
-    if [[( -f $file ) && ( $file == *.sh )]]; then
-        . $file
-    fi
+for func_path in $bafun/*; do
+    . $func_path/$(ls $func_path | grep .sh)
 done

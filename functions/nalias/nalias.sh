@@ -1,19 +1,23 @@
 # 'Auto' create bash aliases
 
 nalias() {
-    # Help message
-    if [ "$1" = "-h" ] || [ "$1" = "--help" ]; then
-        echo "nalias <commands>"
-        echo "Options:"
+    help() {
+        echo "nalias <options>"
+     echo -e "\nOptions:"
         echo "  -h, --help      Display this help message"
-        echo "  -a              Does nothing"
-        return 0
-    fi
+        return
+    }
+    case $1 in
+        -e | --edit)
+            nano ${BASH_SOURCE[0]};;
+        -h | --help | *)
+            help;;
+    esac
 
     alias_name=''
     alias_func=''
     line_write=28
-
+    # i tbh got no clue what is going on here this is my first function i did in bash
      while getopts ":n:f:L::" opt; do
         echo "Proc opt: $opt, OPTARG: $OPTARG"
         case $opt in
@@ -62,4 +66,4 @@ nalias() {
     return 1
 }
 
-if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then nalias "$@"; fi
+if [[ ${BASH_SOURCE[0]} == ${0} ]]; then nalias "$@"; fi

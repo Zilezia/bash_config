@@ -1,13 +1,15 @@
 # Just quicker setting up sites that are rust based
 _rerver() {
-    local cur prev commands server_opts
+    local cur prev
+    local commands       server_opts
+    local commands_short server_opts_short
     COMPREPLY=()
     cur="${COMP_WORDS[COMP_CWORD]}"
     prev="${COMP_WORDS[COMP_CWORD-1]}"
     commands="      --edit --help"
-    commands_short="-e     -h"
+    commands_short=" -e     -h"
     server_opts="      --activate --stop --serve --restart --log --help"
-    server_opts_short="-a         -s     -S      -r        -l    -h"
+    server_opts_short=" -a         -s     -S      -r        -l    -h"
 
     if [[ ${COMP_CWORD} -eq 1 ]]; then
         COMPREPLY=( $(compgen -W "${commands}" -- ${cur}) )
@@ -210,7 +212,7 @@ rerver() {
 
     case $1 in
         -e | --edit)
-            nano $bafun/rerver.sh;;
+            nano ${BASH_SOURCE[0]};;
         -h | --help)
             help;;
         -H)
@@ -227,4 +229,3 @@ rerver() {
 
 if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then rerver "$@"; fi
 complete -F _rerver rerver
-
