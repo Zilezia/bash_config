@@ -1,4 +1,7 @@
 #+author:   Zilezia
-#+data:     19-12-2024
+#+date:     06-01-2025
 
 * README 
+My bash configuration
+
+_{Automated commits are just automated bc I just cba committing every single time myself some changes that I make}

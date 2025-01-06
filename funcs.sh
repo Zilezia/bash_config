@@ -1,4 +1,6 @@
 # Bash functions
 for file in $bafun/*; do
-    if [ -f "$file" ]; then . "$file"; fi
+    if [[( -f $file ) && ( $file == *.sh )]]; then
+        . $file
+    fi
 done

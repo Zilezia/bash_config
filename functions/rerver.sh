@@ -104,7 +104,6 @@ rerver() {
     activate_server() {
         if [[ -f $cargo ]]; then
             if [[ -d $server ]]; then
-                echo "${use_log}"
                 echo 'Activating server...'
                 nohup cargo r --release --manifest-path $cargo > $(new_log) 2>&1 &
                 echo $! > $server/server.pid
@@ -146,21 +145,21 @@ rerver() {
     }
 
     serve_server() {
+        # use my cleanup for this when ^C
         trap cleanup SIGINT SIGTERM
-
         echo 'Serving...'
         cargo r --manifest-path $cargo & pids+=( "$!" )
         trunk serve --config $front & pids+=( "$!" )
         wait
-
+        # default ^C cuz it'll still do cleanup when I ^C
         trap - SIGINT SIGTERM
     }
-
+    # TODO
     read_logs() {
         local def_log=$(curr_log)
         if [[ ! -f $def_log ]]; then
             for log in $logs/$curr_date_dir/*; do
-                def_log=$log
+                def_log=$log # should be the most recent log from that date
             done
         fi
         case $1 in

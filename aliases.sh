@@ -40,6 +40,7 @@ alias cool2='lain'
 alias cool3='for i in {232..255} {255..232} ; do echo -en "\e[38;5;${i}m$\e[0m" ; done ; echo'
 
 # Random
+alias postman="~/Desktop/Postman/Postman"
 alias rever="echo 'typo lol' && rerver"
 alias rpi="ssh zilezia@$rpi"
 alias c='xclip -selection clipboard'
