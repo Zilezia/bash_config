@@ -74,6 +74,8 @@ alias gush='git push'
 alias gushu='gush -u origin main'
 alias granch='git branch -v'
 alias gemote='git remote -v'
+alias gremote='gemote'
+alias grem='gemote'
 
 # MySQL/SQL
 alias rsql='mysql -u root -p' # no sudo to avoid double password typing
