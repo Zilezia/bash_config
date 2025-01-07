@@ -35,7 +35,7 @@ alias aptu='sudo apt update'
 
 # Cools
 alias cool='fastfetch'
-alias lain='jp2a --height=25 -b --red=2.5 ~/Pictures/Lain/lain_side.png'
+alias lain='jp2a --height=25 -b --red=2.5 $Lain/lain_side.png'
 alias cool2='lain'
 alias cool3='for i in {232..255} {255..232} ; do echo -en "\e[38;5;${i}m$\e[0m" ; done ; echo'
 
@@ -64,6 +64,8 @@ alias cd,='cd.'
 alias files='xdg-open .'
 
 # git
+alias glone='git clone'
+alias glon='glone'
 alias gadd='git add .'
 alias gyatt='gadd'
 alias gyat='gadd'
