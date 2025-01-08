@@ -64,6 +64,7 @@ alias cd,='cd.'
 alias files='xdg-open .'
 
 # git
+alias mgit="$browser https://github.com/Zilezia"
 alias glone='git clone'
 alias glon='glone'
 alias gadd='git add .'

@@ -8,6 +8,8 @@ export lain=$Lain
 
 export rpi=192.168.1.190
 
+export browser=vivaldi
+
 # Projects dir
 export Kode=~/Kode
 if [[ ! -d $Kode ]]; then
