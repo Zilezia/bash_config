@@ -12,6 +12,9 @@ alias bafunc='bafun'
 alias bapf='nano ~/.bash/profile.sh'
 alias bafile='bapf'
 
+# nano
+alias narc='nano ~/.nanorc' # hehe narc
+
 # update upgrade
 alias upd='sudo apt update'
 alias upg='sudo apt upgrade'
