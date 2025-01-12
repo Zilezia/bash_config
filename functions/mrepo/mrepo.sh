@@ -19,18 +19,22 @@ mrepo() {
         return
     }
 
+    open_gh() {
+        local repo1=$(git remote get-url origin)
+        local repo2=${repo1#ssh://git@}
+        local url=${repo2//[:]//}
+        $browser $url
+        return
+    }
+
     case $1 in
         -h | --help)
             help;;
         -e | --edit)
             nano ${BASH_SOURCE[0]};;
+        *)
+            open_gh;;
     esac
-
-    local repo1=$(git remote get-url origin)
-    local repo2=${repo1#ssh://git@}
-    local url=${repo2//[:]//}
-
-    $browser $url
     return
 }
 

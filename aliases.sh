@@ -36,21 +36,9 @@ alias aptarm='sudo apt autoremove'
 alias aptrm='sudo apt remove'
 alias aptu='sudo apt update'
 
-# Cools
-alias cool='fastfetch'
-alias lain='jp2a --height=25 -b --red=2.5 $Lain/lain_side.png'
-alias cool2='lain'
-alias cool3='for i in {232..255} {255..232} ; do echo -en "\e[38;5;${i}m$\e[0m" ; done ; echo'
-
 # Random
-alias postman="~/Desktop/Postman/Postman"
 alias rever="echo 'typo lol' && rerver"
-alias rpi="ssh zilezia@$rpi"
-alias c='xclip -selection clipboard'
-alias v='xclip -o'
 alias x='exit'
-alias terminal='gnome-terminal'
-alias new='terminal'
 alias ok='echo ok'
 alias snano='sudo nano'
 alias tarr='tar -xvf'
@@ -64,7 +52,6 @@ alias l.='l ..'
 alias cd.='cd ..'
 alias cd..='cd. && cd.'
 alias cd,='cd.'
-alias files='xdg-open .'
 
 # git
 alias mgit="$browser https://github.com/Zilezia"
@@ -84,7 +71,7 @@ alias gremote='gemote'
 alias grem='gemote'
 
 # MySQL/SQL
-alias rsql='mysql -u root -p' # no sudo to avoid double password typing
+alias rsql='mysql -u root -p'
 
 # Rust
 ## Cargo
