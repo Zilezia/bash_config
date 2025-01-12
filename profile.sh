@@ -1,3 +1,30 @@
+_CLR="\e[0m"
+_CLRB="\e[49m"
+_CLRF="\e[39m"
+
+_BOLD="\e[1m"
+_DIM="\e[2m"
+_UNDER="\e[4m"
+_BLINK="\e[5m"
+_INV="\e[7m"
+_HIDE="\e[8m"
+
+# foreground
+_WHITEF="\e[97m"
+_BLACKF="\e[30m"
+_MAGF="\e[38;5;200m"
+_BLUEF="\e[38;5;4m"
+_GREENF="\e[38;5;10m"
+_GOLDF="\e[38;5;220m"
+# background
+_WHITEB="\e[107m"
+_BLACKB="\e[40m"
+_MAGB="\e[48;5;200m"
+_BLUEB="\e[48;5;21m"
+
+#export PS1="${_BOLD}${_MAGF}\u${_WHITEF}: ${_GOLDF}\$(if [[ \$PWD == \$HOME ]]; then echo '~'; elif [[ \$PWD == / ]]; then echo '/'; else echo -e \"${_WHITEF}\w\"; fi) ${_BOLD}${_GREENF}\$${_CLR} "
+export PS1="${_BOLD}${_MAGF}\u${_WHITEF}: \$(echo -e \"${_WHITEF}\w\" | sed 's|~|\\[${_GOLDF}\\]~\\[${_WHITEF}\\]|g') ${_BOLD}${_GREENF}\$${_CLR} "
+
 # bash
 export bash=~/.bash
 export bafun=$bash/functions
@@ -26,4 +53,3 @@ export PET_CREM_ENV=$pet_crem/.env
 
 export RoPC=$Kode/RoPC_plugin
 export ropc=$RoPC
-
