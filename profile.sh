@@ -21,7 +21,9 @@ _WHITEB="\e[107m"
 _BLACKB="\e[40m"
 _MAGB="\e[48;5;200m"
 _BLUEB="\e[48;5;21m"
+_REDB="\e[48;5;196m"
 
+# this is breaking my terminal but im keeping it atm without fixing cuz it looks fire
 #export PS1="${_BOLD}${_MAGF}\u${_WHITEF}: ${_GOLDF}\$(if [[ \$PWD == \$HOME ]]; then echo '~'; elif [[ \$PWD == / ]]; then echo '/'; else echo -e \"${_WHITEF}\w\"; fi) ${_BOLD}${_GREENF}\$${_CLR} "
 export PS1="${_BOLD}${_MAGF}\u${_WHITEF}: \$(echo -e \"${_WHITEF}\w\" | sed 's|~|\\[${_GOLDF}\\]~\\[${_WHITEF}\\]|g') ${_BOLD}${_GREENF}\$${_CLR} "
 

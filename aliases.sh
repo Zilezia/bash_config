@@ -39,11 +39,15 @@ alias aptu='sudo apt update'
 
 # Cools
 alias cool='fastfetch'
+# lkey wanna write that myself idk how it works so ill check it out later
 alias lain='jp2a --height=25 -b --red=2.5 $Lain/lain_side.png'
+alias well*3='jp2a --height=32 -i ~/Pictures/boykisser.jpg'
 alias cool2='lain'
 alias cool3='for i in {232..255} {255..232} ; do echo -en "\e[38;5;${i}m$\e[0m" ; done ; echo'
+#alias flag='echo -e "${_WHITEB}          \n${_REDB}          ${_CLR}"'
 
 # Random
+alias cpd="cp -r"
 alias postman="~/Desktop/Postman/Postman"
 alias rever="echo 'typo lol' && rerver"
 alias rpi="ssh zilezia@$rpi"
@@ -59,6 +63,7 @@ alias tarr='tar -xvf'
 alias rmd='rm -rf'
 alias cl='clear'
 alias cls='cl'
+alias clr='cl'
 alias l='ls -ACF'
 
 # change to functions
