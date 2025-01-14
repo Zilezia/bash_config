@@ -60,6 +60,25 @@ flag() {
         done
     }
 
+    slonsk() {
+        local sil=("\e[48;5;220m$(space)${_CLR}" "\e[48;5;75m$(space)${_CLR}")
+        local num_colours=${#sil[@]}
+        local num_stripes=$((height / num_colours))
+
+        if (( height % num_stripes != 0)); then
+            num_stripes=$((num_stripes + 1))
+        fi
+
+        local count=0
+        for colour in "${sil[@]}"; do
+            for ((i = 0; i < num_stripes; i++)); do
+                if ((count >= height)); then break; fi
+                echo -e "${colour}"
+                count=$((count + 1))
+            done
+        done
+    }
+
     for arg in "$@"; do
         case $arg in
             -h | --help)
@@ -79,6 +98,8 @@ flag() {
                 ;;
             -p | --pol)
                 polska;;
+            -s | --sil)
+                slonsk;;
         esac
     done
 }
