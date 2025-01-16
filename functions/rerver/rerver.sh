@@ -218,11 +218,14 @@ rerver() {
         -H)
             log_help;;
         *)
-            # this does if first option "rerver <option>" is shorter than 5 characters it'll show the help message
-            if [[ ${#1} -lt 5 ]]; then
-                help
-            else
+            if [[ $1 == '.' ]]; then
+                local curr=${PWD##*/}
+                curr=${curr:-/}
+                server_com $curr $2
+            elif [[ ${#1} -gt 5 ]]; then
                 server_com $1 $2
+            else
+                help
             fi;;
     esac
 }
