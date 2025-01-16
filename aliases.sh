@@ -41,7 +41,7 @@ alias aptu='sudo apt update'
 alias cool='fastfetch'
 # lkey wanna write that myself idk how it works so ill check it out later
 alias lain='jp2a --height=25 -b --red=2.5 $Lain/lain_side.png'
-alias well*3='jp2a --height=32 -i ~/Pictures/boykisser.jpg'
+alias well*3='jp2a --height=32 -i --color-depth=4 ~/Pictures/boykisser.jpg'
 alias cool2='lain'
 alias cool3='for i in {232..255} {255..232} ; do echo -en "\e[38;5;${i}m$\e[0m" ; done ; echo'
 #alias flag='echo -e "${_WHITEB}          \n${_REDB}          ${_CLR}"'
