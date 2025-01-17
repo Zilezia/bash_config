@@ -15,8 +15,24 @@ cdpr() {
         echo "cdpr <options>"
      echo -e "\ncd's to the project root dir"
      echo -e "\nOptions:"
+        echo "  -e, --edit      Edit source code"
         echo "  -h, --help      Display this help message"
         return
+    }
+
+    fun() {
+        local current_dir_path=$(pwd)
+        IFS='/' read -ra curr_dir_arr <<< "$current_dir_path"
+        local proj_name=${curr_dir_arr[4]} # proj_name: /home/{user}/{Documents}/HERE
+        for proj_dir in $Kode/*; do
+            if [[ -d $proj_dir ]]; then
+                IFS='/' read -ra dirs <<< "$proj_dir"
+                if [[ $proj_name == ${dirs[4]} ]]; then
+                    cd "${proj_dir}"
+                    return
+                fi
+            fi
+        done
     }
 
     case $1 in
@@ -24,20 +40,10 @@ cdpr() {
             help;;
         -e | --edit)
             nano ${BASH_SOURCE[0]};;
+        *)
+            func;;
     esac
-
-    local current_dir_path=$(pwd)
-    IFS='/' read -ra curr_dir_arr <<< "$current_dir_path"
-    local proj_name=${curr_dir_arr[4]} # proj_name: /home/{user}/{Documents}/HERE
-    for proj_dir in $Kode/*; do
-        if [[ -d $proj_dir ]]; then
-            IFS='/' read -ra dirs <<< "$proj_dir"
-            if [[ $proj_name == ${dirs[4]} ]]; then
-                cd "${proj_dir}"
-                return
-            fi
-        fi
-    done
+    return
 }
 
 if [[ ${BASH_SOURCE[0]} == ${0} ]]; then cdpr "$@"; fi
