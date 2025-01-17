@@ -54,6 +54,7 @@ alias rpi="ssh zilezia@$rpi"
 alias c='xclip -selection clipboard'
 alias v='xclip -o'
 alias x='exit'
+alias q='x'
 alias terminal='gnome-terminal'
 alias new='terminal'
 alias ok='echo ok'
