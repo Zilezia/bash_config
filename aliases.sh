@@ -37,6 +37,12 @@ alias aptarm='sudo apt autoremove'
 alias aptrm='sudo apt remove'
 alias aptu='sudo apt update'
 
+# Stands?! (sounds)
+alias hando='(mpg123 -q -k 210 ~/Downloads/za_hando.mp3 &)'
+alias HANDO='hando'
+alias warudo='(mpg123 -q -k 87 ~/Downloads/za_warudo.mp3 &)'
+alias WARUDO='warudo'
+
 # Cools
 alias cool='fastfetch'
 # lkey wanna write that myself idk how it works so ill check it out later
@@ -54,6 +60,7 @@ alias rpi="ssh zilezia@$rpi"
 alias c='xclip -selection clipboard'
 alias v='xclip -o'
 alias x='exit'
+alias s='sudo'
 alias q='x'
 alias terminal='gnome-terminal'
 alias new='terminal'
