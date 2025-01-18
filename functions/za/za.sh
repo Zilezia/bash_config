@@ -4,7 +4,7 @@ _za() {
     local opts opts_short
     COMPREPLY=()
     cur="${COMP_WORDS[COMP_CWORD]}"
-    stands="warudo"
+    stands="warudo hando"
     opts="      --edit --help"
     opts_short=" -e     -h"
 
@@ -25,11 +25,11 @@ za() {
         return
     }
 
-    func() {
-        (mpg123 -q -n 100 ~/Downloads/za_warudo-stop_resume.mp3 &)
-        #sleep 1
+    warudo_func() {
+        warudo
+        sleep 1
 
-        local app_list='sleep|firefox|vivaldi|chrome|edge|vesktop|obs|vlc|blue' # should get my bluetooth???
+        local app_list='sleep|firefox|vivaldi|chrome|edge|vesktop|obs|vlc|blue|steam'
         local procs=$(ps -u zilezia | grep -E "${app_list}" | awk '{print $1}')
 
         # stop optional app
@@ -37,6 +37,7 @@ za() {
 
         local when_stop=$(date +'%d %b %Y %H:%M:%S')
         for i in {1..6}; do
+            # i dont like this part i need sudo to change the date
             (s date --set="${when_stop}" &> /dev/null)
             sleep 1
         done
@@ -48,17 +49,20 @@ za() {
         return
     }
 
+    hando_func() {
+        hando
+        local proc=$(ps -u zilezia | grep -E "${1}" | awk '{print $1}')
+        if [[ ${#proc} -gt 0 ]]; then
+            kill -9 $proc
+        fi
+        return
+    }
+
     case $1 in
         warudo)
-            (func &);;
-        -z)
-            #local all_procs=$(ps -u zilezia | awk '{print $ 1 }' | grep -E '[0-9]')
-            local app_list='sleep|firefox|vivaldi|chrome|edge|vesktop|obs'
-            local all_procs=$(ps -u zilezia | grep -E "${app_list}" | awk '{print $1}')
-            for proc in $all_procs; do
-                echo "${proc}"
-            done
-            ;;
+            (warudo_func &);;
+        hando)
+            (hando_func $2 &);;
         -e | --edit)
             nano ${BASH_SOURCE[0]};;
         -h | --help | *)

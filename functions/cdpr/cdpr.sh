@@ -20,7 +20,7 @@ cdpr() {
         return
     }
 
-    fun() {
+    func() {
         local current_dir_path=$(pwd)
         IFS='/' read -ra curr_dir_arr <<< "$current_dir_path"
         local proj_name=${curr_dir_arr[4]} # proj_name: /home/{user}/{Documents}/HERE

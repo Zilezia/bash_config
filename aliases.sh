@@ -22,8 +22,8 @@ alias upg='sudo apt upgrade'
 alias up='upd && upg'
 
 # interesting
-alias fuck='sudo reboot now'
-alias FUCK='sudo shutdown now'
+alias fuck='reboot'
+alias FUCK='shutdown now'
 
 # Package Managers
 ## DPKG
@@ -40,7 +40,8 @@ alias aptu='sudo apt update'
 # Stands?! (sounds)
 alias hando='(mpg123 -q -k 210 ~/Downloads/za_hando.mp3 &)'
 alias HANDO='hando'
-alias warudo='(mpg123 -q -k 87 ~/Downloads/za_warudo.mp3 &)'
+#alias warudo='(mpg123 -q -k 87 ~/Downloads/za_warudo.mp3 &)'
+alias warudo='(mpg123 -q -n 100 ~/Downloads/za_warudo-stop_resume.mp3 &)'
 alias WARUDO='warudo'
 
 # Cools
