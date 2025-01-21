@@ -107,6 +107,7 @@ rerver() {
         if [[ -f $cargo ]]; then
             if [[ -d $server ]]; then
                 echo 'Activating server...'
+                # build front meanwhile
                 nohup cargo r --release --manifest-path $cargo > $(new_log) 2>&1 &
                 echo $! > $server/server.pid
                 echo 'Server is up!'
