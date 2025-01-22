@@ -29,6 +29,7 @@ rerver() {
         echo '      -e      --edit      "Edit the function (using nano)"'
         echo '      -h      --help      "View this help message"'
         echo '      -H                  "View --log help message"'
+        echo '      -S      --serve     "Serve the current directory (only for build)"'
      echo -e '\nOptions:'
         echo '      -a      --activate  "Get the server up and running"'
         echo '      -s      --stop      "Stop the server completely"'
@@ -57,8 +58,8 @@ rerver() {
     # cant do with ^ icba figuring out to be ignoring the prior path and just doing the name
     local LOG_REGEX='^server_20[0-9]{2}-[0-9]{1,2}-[0-9]{1,2}_[0-9]+.log$'
 
-    local curr_date_dir="`date "+%Y_%m_%d"`"
-    local curr_date="`date "+%Y-%m-%d"`"
+    local curr_date_dir="date \"+%Y_%m_%d\""
+    local curr_date="date \"+%Y-%m-%d\""
 
     # ${string:5:1} # gets 5th character
     # ${string:5:2} # gets 2 characters from 5th position
@@ -81,6 +82,7 @@ rerver() {
                 for logp in $date_dir/*; do
                     if [[ ( -f $logp ) && ( $logp == *.log ) ]]; then
                         IFS='/' read -ra log_split <<< "$logp"
+                # why does my highlight do this v
                         local log=${log_split[-1]}    # this just gets the file without the path
                         local end_log=${log##*_}      # n.log
                         local log_num=${end_log%.log} # n
@@ -91,7 +93,7 @@ rerver() {
             fi
         done
         let "nlog_num++" # n + 1
-        local nlog=server_"${curr_date}"_"${nlog_num}".log
+        local nlog="server_${curr_date}_${nlog_num}.log"
         echo "$logs/$nlog"
     }
 
@@ -137,7 +139,7 @@ rerver() {
             stop_func
         else
             stop_func
-            return
+            exit
         fi
     }
 
@@ -150,14 +152,20 @@ rerver() {
     serve_server() {
         # use my cleanup for this when ^C
         trap cleanup SIGINT SIGTERM
-        echo 'Serving...'
-        cargo r --manifest-path $cargo & pids+=( "$!" )
-        trunk serve --config $front & pids+=( "$!" )
+        if [[ $1 == 'r' ]]; then
+            echo 'Serving as release...'
+            cargo r --manifest-path $cargo --release & pids+=( "$!" )
+            trunk serve --config $front --release & pids+=( "$!" )
+        else
+            echo 'Serving...'
+            cargo r --manifest-path $cargo & pids+=( "$!" )
+            trunk serve --config $front & pids+=( "$!" )
+        fi
         wait
         # default ^C cuz it'll still do cleanup when I ^C
         trap - SIGINT SIGTERM
     }
-    # TODO
+    # TODO forgot this
     read_logs() {
         local def_log=$(curr_log)
         if [[ ! -f $def_log ]]; then
@@ -165,6 +173,7 @@ rerver() {
                 def_log=$log # should be the most recent log from that date
             done
         fi
+
         case $1 in
             -c | --cat)
                 cat $def_log;;
@@ -199,7 +208,7 @@ rerver() {
             -s | --stop)
                 stop_server;;
             -S | --serve)
-                serve_server;;
+                serve_server $2;;
             -r | --restart)
                 restart_server;;
             -l | --log)
@@ -218,12 +227,12 @@ rerver() {
             help;;
         -H)
             log_help;;
+        -S)
+            local curr=${PWD##*/}
+            curr=${curr:-/}
+            server_com $curr -S $2;;
         *)
-            if [[ $1 == '.' ]]; then
-                local curr=${PWD##*/}
-                curr=${curr:-/}
-                server_com $curr $2
-            elif [[ ${#1} -gt 5 ]]; then
+            if [[ ${#1} -gt 5 ]]; then
                 server_com $1 $2
             else
                 help
