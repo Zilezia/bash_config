@@ -139,7 +139,7 @@ rerver() {
             stop_func
         else
             stop_func
-            exit
+            return
         fi
     }
 
