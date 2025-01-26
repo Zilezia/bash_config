@@ -49,9 +49,17 @@ fi
 export zilezia=$Kode/zilezia.dev
 export zilezia_dev=$zilezia
 export site=$zilezia
+export ZILEZIA_ENV=$zilezia/.env
+export ZILEZIA_DEV_ENV=$ZILEZIA_ENV
 
 export pet_crem=$Kode/pet_crem
 export PET_CREM_ENV=$pet_crem/.env
 
+export bisser=$Kode/koybisser
+export koy_bisser=$bisser
+export BISSER_ENV=$bisser/.env
+export KOY_BISSER_ENV=$bisser/.env
+
+### forgot about this one
 export RoPC=$Kode/RoPC_plugin
 export ropc=$RoPC
