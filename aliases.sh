@@ -54,6 +54,7 @@ alias cool3='for i in {232..255} {255..232} ; do echo -en "\e[38;5;${i}m$\e[0m" 
 #alias flag='echo -e "${_WHITEB}          \n${_REDB}          ${_CLR}"'
 
 # Random
+alias n='nano'
 alias cpd="cp -r"
 alias postman="~/Desktop/Postman/Postman"
 alias rever="echo 'typo lol' && rerver"
@@ -67,7 +68,8 @@ alias terminal='gnome-terminal'
 alias new='terminal'
 alias ok='echo ok'
 alias fire='echo trve'
-alias snano='sudo nano'
+alias sn='s nano'
+alias snano='sn'
 alias tarr='tar -xvf'
 alias rmd='rm -rf'
 alias cl='clear'
