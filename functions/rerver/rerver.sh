@@ -1,3 +1,4 @@
+#!/bin/sh
 # Just quicker setting up sites that are rust based
 _rerver() {
     local cur prev
@@ -58,8 +59,8 @@ rerver() {
     # cant do with ^ icba figuring out to be ignoring the prior path and just doing the name
     local LOG_REGEX='^server_20[0-9]{2}-[0-9]{1,2}-[0-9]{1,2}_[0-9]+.log$'
 
-    local curr_date_dir="date \"+%Y_%m_%d\""
-    local curr_date="date \"+%Y-%m-%d\""
+    local curr_date_dir=$(date "+%Y_%m_%d")
+    local curr_date=$(date "+%Y-%m-%d")
 
     # ${string:5:1} # gets 5th character
     # ${string:5:2} # gets 2 characters from 5th position
@@ -94,7 +95,9 @@ rerver() {
         done
         let "nlog_num++" # n + 1
         local nlog="server_${curr_date}_${nlog_num}.log"
-        echo "$logs/$nlog"
+        local log_path="${logs}/${nlog}"
+        touch "$log_path"
+        echo "$log_path"
     }
 
     cleanup() {
@@ -110,7 +113,7 @@ rerver() {
             if [[ -d $server ]]; then
                 echo 'Activating server...'
                 # build front meanwhile
-                nohup cargo r --release --manifest-path $cargo > $(new_log) 2>&1 &
+                nohup cargo r --release --manifest-path "$cargo" > "$(new_log)" 2>&1 &
                 echo $! > $server/server.pid
                 echo 'Server is up!'
                 return
