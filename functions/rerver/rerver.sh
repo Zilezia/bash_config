@@ -204,8 +204,6 @@ rerver() {
         if [[ ! -d $logs ]]; then mkdir $logs; fi
 
         case $2 in
-            --cl)
-                new_log;;
             -a | --activate)
                 activate_server;;
             -s | --stop)
@@ -223,6 +221,9 @@ rerver() {
         esac
     }
 
+    local curr=${PWD##*/}
+    curr=${curr:-/}
+
     case $1 in
         -e | --edit)
             nano ${BASH_SOURCE[0]};;
@@ -231,10 +232,16 @@ rerver() {
         -H)
             log_help;;
         -S)
-            local curr=${PWD##*/}
-            curr=${curr:-/}
             server_com $curr -S $2;;
-        *)
+        -a | --activate)
+            server_com $curr -a;;
+        -s | --stop)
+            server_com $curr -s;;
+        -r | --restart)
+            server_com $curr -r;;
+        -l | --log)
+            server_com $curr -l $2;;
+        *) # path/dir specific
             if [[ ${#1} -gt 5 ]]; then
                 server_com $1 $2
             else
