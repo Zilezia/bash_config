@@ -26,7 +26,7 @@ rerver() {
     help() {
         echo 'rerver <command> <option>'
      echo -e '\nCommands:'
-     echo -e '              [server]    "Directory name of the server"          \e[1m[DEFAULT]\e[0m'
+     echo -e '              [server]    "Directory name of the server"          \[\e[1m\][DEFAULT]\[\e[0m\]'
         echo '      -e      --edit      "Edit the function (using nano)"'
         echo '      -h      --help      "View this help message"'
         echo '      -H                  "View --log help message"'
@@ -38,7 +38,7 @@ rerver() {
         echo '      -r      --restart   "Restart the server"'
         echo '      -l      --log       "Show most recent logs"'
         echo '      -H                  "View --log help message"'
-     echo -e '      -h      --help      "View this help message"                \e[1m[DEFAULT]\e[0m'
+     echo -e '      -h      --help      "View this help message"                \[\e[1m\][DEFAULT]\[\e[0m\]'
         return
     }
 
@@ -46,7 +46,7 @@ rerver() {
         echo 'rerver [server] -l <option>'
      echo -e '\nOptions:'
         echo '      -c      --cat       "Cat the log file"'
-     echo -e '      -t      --tail      "Show 10 lines from the bottom"         \e[1m[DEFAULT]\e[0m'
+     echo -e '      -t      --tail      "Show 10 lines from the bottom"         \[\e[1m\][DEFAULT]\[\e[0m\]'
         echo '      -h      --help      "View this help message"'
         return
     }
@@ -62,6 +62,7 @@ rerver() {
     local curr_date_dir=$(date "+%Y_%m_%d")
     local curr_date=$(date "+%Y-%m-%d")
 
+    # why was I making these comments
     # ${string:5:1} # gets 5th character
     # ${string:5:2} # gets 2 characters from 5th position
 
@@ -91,13 +92,15 @@ rerver() {
                     fi
                 done
                 break
+            else
+                ok 1
             fi
         done
         let "nlog_num++" # n + 1
         local nlog="server_${curr_date}_${nlog_num}.log"
         local log_path="${logs}/${nlog}"
-        touch "$log_path"
-        echo "$log_path"
+        touch "${log_path}"
+        echo "${log_path}"
     }
 
     cleanup() {
@@ -113,6 +116,7 @@ rerver() {
             if [[ -d $server ]]; then
                 echo 'Activating server...'
                 # build front meanwhile
+                trunk build --config $front --release
                 nohup cargo r --release --manifest-path "$cargo" > "$(new_log)" 2>&1 &
                 echo $! > $server/server.pid
                 echo 'Server is up!'
@@ -155,7 +159,7 @@ rerver() {
     serve_server() {
         # use my cleanup for this when ^C
         trap cleanup SIGINT SIGTERM
-        if [[ $1 == 'r' ]]; then
+        if [[ $1 == '-r' ]]; then
             echo 'Serving as release...'
             cargo r --manifest-path $cargo --release & pids+=( "$!" )
             trunk serve --config $front --release & pids+=( "$!" )
@@ -204,16 +208,18 @@ rerver() {
         if [[ ! -d $logs ]]; then mkdir $logs; fi
 
         case $2 in
+            --cl)
+                new_log;;
             -a | --activate)
                 activate_server;;
             -s | --stop)
                 stop_server;;
             -S | --serve)
-                serve_server $2;;
+                serve_server $3;;
             -r | --restart)
                 restart_server;;
             -l | --log)
-                read_logs $2;;
+                read_logs $3;;
             -H)
                 log_help;;
             -h | --help | *)
