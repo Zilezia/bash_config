@@ -62,45 +62,38 @@ rerver() {
     local curr_date_dir=$(date "+%Y_%m_%d")
     local curr_date=$(date "+%Y-%m-%d")
 
-    # why was I making these comments
     # ${string:5:1} # gets 5th character
     # ${string:5:2} # gets 2 characters from 5th position
-
-    curr_log() {
-        local curr_log
-        for log in $logs/*; do
-            if [[ ( -f $log ) && ( $log == *.log ) ]]; then
-                curr_log=$log
-                break
-            fi
-        done
-        echo "${curr_log}"
+    latest_log() { # it works at least idc
+        local latest_dir=$(ls $logs -Art | tail -n 1)
+        local latest_log=$(ls $logs/$latest_dir -Art | tail -n 1)
+        local log_path="${logs}/${latest_dir}/${latest_log}"
+        echo "${log_path}"
     }
 
     new_log() {
-        local nlog_num
-        for date_dir in $logs/*; do
-            if [[ ( -d $date_dir ) && ( $date_dir == $logs/$curr_date_dir ) ]]; then
-                for logp in $date_dir/*; do
-                    if [[ ( -f $logp ) && ( $logp == *.log ) ]]; then
-                        IFS='/' read -ra log_split <<< "$logp"
-                # why does my highlight do this v
-                        local log=${log_split[-1]}    # this just gets the file without the path
-                        local end_log=${log##*_}      # n.log
-                        local log_num=${end_log%.log} # n
-                        nlog_num=log_num
+        local curr_path="${logs}/${curr_date_dir}"
+        local nlog_num=0
+
+        if [[ -d $curr_path ]]; then
+            for log_file in $curr_path/*.log; do
+                if [[ -f $log_file ]]; then
+                    local log_name=$(basename "$log_file")
+                    local log_num=${log_name##*_}
+                    log_num=${log_num%.log}
+                    if [[ $log_num -gt $nlog_num ]]; then
+                        nlog_num=$log_num
                     fi
-                done
-                break
-            else
-                ok 1
-            fi
-        done
-        let "nlog_num++" # n + 1
+                fi
+            done
+        else
+            mkdir -p "$curr_path"
+        fi
+        nlog_num=$((nlog_num + 1))
         local nlog="server_${curr_date}_${nlog_num}.log"
-        local log_path="${logs}/${nlog}"
-        touch "${log_path}"
-        echo "${log_path}"
+        local log_path="${curr_path}/${nlog}"
+        touch "$log_path"
+        echo "$log_path"
     }
 
     cleanup() {
@@ -135,10 +128,6 @@ rerver() {
         stop_func() {
             echo 'Stopping server...'
             kill -9 $(cat $server/server.pid)
-            # moving the log into its date dir
-            if [[ -f $(curr_log) ]]; then
-                mv $(curr_log) $logs/$curr_date_dir
-            fi
             echo 'Server stopped.'
         }
         # here it will decide to just stop (restarting) the server or completely stop itself
@@ -174,18 +163,15 @@ rerver() {
     }
     # TODO forgot this
     read_logs() {
-        local def_log=$(curr_log)
-        if [[ ! -f $def_log ]]; then
-            for log in $logs/$curr_date_dir/*; do
-                def_log=$log # should be the most recent log from that date
-            done
-        fi
+        local def_log=$(latest_log)
 
         case $1 in
-            -c | --cat)
-                cat $def_log;;
             -h | --help)
                 log_help;;
+            -c | --cat)
+                cat $def_log;;
+            -m | --more)
+                more $def_log;;
             -t | --tail | *)
                 tail -n10 $def_log;;
         esac
@@ -232,7 +218,7 @@ rerver() {
 
     case $1 in
         -e | --edit)
-            nano ${BASH_SOURCE[0]};;
+            micro ${BASH_SOURCE[0]};;
         -h | --help)
             help;;
         -H)

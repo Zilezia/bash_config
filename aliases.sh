@@ -3,18 +3,15 @@
 alias rldx='. ~/.bashrc'
 alias rld='rldx && clear'
 # quick aliases to the bash files
-alias barc='nano ~/.bashrc'
-alias benv='nano ~/.bash/env.sh'
-alias bls='nano ~/.bash/aliases.sh'
+alias barc='micro ~/.bashrc'
+alias benv='micro ~/.bash/env.sh'
+alias bls='micro ~/.bash/aliases.sh'
 alias balias='bls'
 alias balia='bls'
-alias bafun='nano ~/.bash/funcs.sh'
+alias bafun='micro ~/.bash/funcs.sh'
 alias bafunc='bafun'
-alias bapf='nano ~/.bash/profile.sh'
+alias bapf='micro ~/.bash/profile.sh'
 alias bafile='bapf'
-
-# nano
-alias narc='nano ~/.nanorc' # hehe narc
 
 # update upgrade
 alias upd='sudo apt update'
@@ -54,7 +51,8 @@ alias cool3='for i in {232..255} {255..232} ; do echo -en "\e[38;5;${i}m$\e[0m" 
 #alias flag='echo -e "${_WHITEB}          \n${_REDB}          ${_CLR}"'
 
 # Random
-alias n='nano'
+## icba changing that i got nano replaced with micro either way
+alias nano="micro"
 alias cpd="cp -r"
 alias postman="~/Desktop/Postman/Postman"
 alias rever="echo 'typo lol' && rerver"
@@ -68,8 +66,7 @@ alias terminal='gnome-terminal'
 alias new='terminal'
 alias ok='echo ok'
 alias fire='echo trve'
-alias sn='s nano'
-alias snano='sn'
+alias ire='fire'
 alias tarr='tar -xvf'
 alias rmd='rm -rf'
 alias cl='clear'
